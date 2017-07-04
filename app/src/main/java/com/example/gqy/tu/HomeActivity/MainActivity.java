@@ -1,11 +1,13 @@
 package com.example.gqy.tu.HomeActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -35,6 +37,14 @@ private void initview(){
 
     image=(ImageView) findViewById(R.id.image);
     image2=(ImageView) findViewById(R.id.image2);
+    image.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this,PullToRefreshUseActivity.class);
+            startActivity(intent);
+        }
+    });
 }
 
 Handler myhandler = new Handler(){

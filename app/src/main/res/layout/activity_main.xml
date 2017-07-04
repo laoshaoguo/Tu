@@ -18,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/image"/>
 
-    <android.support.v7.widget.RecycleListView
+  <!--  <android.support.v7.widget.RecycleListView
         android:id="@+id/id_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
 
 </RelativeLayout>
