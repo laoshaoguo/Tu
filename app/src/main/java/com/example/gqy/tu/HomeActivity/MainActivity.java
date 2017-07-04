@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends BasaActivity implements BasaActivity.Indatacall {
 
-    private ImageView image;
+    private ImageView image,image2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,9 @@ public class MainActivity extends BasaActivity implements BasaActivity.Indatacal
     }
 
 private void initview(){
+
     image=(ImageView) findViewById(R.id.image);
+    image2=(ImageView) findViewById(R.id.image2);
 }
 
 Handler myhandler = new Handler(){
@@ -42,6 +44,7 @@ Handler myhandler = new Handler(){
         super.handleMessage(msg);
         if (msg.arg1==1){
             Glide.with(MainActivity.this).load(BasaActivity.DataResuse.get(2).getImgUrl()).into(image);
+            Glide.with(MainActivity.this).load(BasaActivity.DataResuse.get(8).getImgUrl()).into(image2);
         }
     }
 };
