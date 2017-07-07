@@ -1,25 +1,29 @@
 package com.example.gqy.tu.Base;
 
 import android.app.Application;
-import android.os.AsyncTask;
-import android.util.Log;
+import android.content.Context;
 
-import com.example.gqy.tu.Bean.ImageInfo;
 import com.example.gqy.tu.BuildConfig;
-import com.example.gqy.tu.Utile.MoreUtile;
 import com.example.gqy.tu.Utile.Utils;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mszf on 2017/7/3.
  */
 
-public class BaseApplication extends Application{
+public class BaseApplication extends Application {
+
+    private static BaseApplication instance = null;
+    private static Context mContext;
+
+    public static BaseApplication getInstance() {
+        if (instance == null) {
+            instance = new BaseApplication();
+
+        }
+        return instance;
+    }
 
     @Override
     public void onCreate() {
@@ -37,3 +41,4 @@ public class BaseApplication extends Application{
         }
     }
 }
+
