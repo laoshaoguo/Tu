@@ -12,14 +12,9 @@ import com.example.gqy.tu.Base.BasaActivity;
 import com.example.gqy.tu.Bean.Data;
 import com.example.gqy.tu.R;
 import com.example.gqy.tu.Utile.Utils;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;

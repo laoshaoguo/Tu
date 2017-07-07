@@ -148,7 +148,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
-                Toast.makeText(PullToRefreshUseActivity.this, Integer.toString(position) + "ii", Toast.LENGTH_LONG).show();
+//                Toast.makeText(PullToRefreshUseActivity.this, Integer.toString(position) + "ii", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -187,6 +187,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         public void onResponse(String response, int id) {
 //            Log.e(TAG, "onResponse：complete" + response);
             data = Utils.stringToList(response, Data.class);
+            System.out.println("data:"+data.size());
             initAdapter();
             addHeadView();
         }
