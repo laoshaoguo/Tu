@@ -74,7 +74,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
 //        mRecyclerView.addItemDecoration(new RecyclerSpace(6, R.color.colorAccent,0));
 
         getdata();
-        setTitle("笑笑");
+        setTitle("魏宏键");
 //        setBackBtn();
 //        initAdapter();
 //        addHeadView();
