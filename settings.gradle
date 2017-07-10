@@ -1,1 +1,1 @@
-include ':app', ':library', ':okhttputils'
+include ':app', ':library', ':okhttputils', ':PhotoView'

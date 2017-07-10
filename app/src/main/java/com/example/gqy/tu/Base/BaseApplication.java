@@ -3,10 +3,14 @@ package com.example.gqy.tu.Base;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.gqy.tu.Bean.Data;
 import com.example.gqy.tu.BuildConfig;
 import com.example.gqy.tu.Utile.Utils;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mszf on 2017/7/3.
@@ -16,6 +20,7 @@ public class BaseApplication extends Application {
 
     private static BaseApplication instance = null;
     private static Context mContext;
+    public static List<Data> initData = new ArrayList<>();
 
     public static BaseApplication getInstance() {
         if (instance == null) {

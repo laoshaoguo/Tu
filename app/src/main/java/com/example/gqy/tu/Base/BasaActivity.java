@@ -43,7 +43,7 @@ public class BasaActivity extends AppCompatActivity {
                 utile = new MoreUtile();
                 // http://www.dbmeinv.com/dbgroup/show.htm?pager_offset=2
                 // http://www.dbmeinv.com/dbgroup/show.htm
-                DataResuse=utile.geturl("http://www.dbmeinv.com/dbgroup/show.htm?pager_offset=2");
+                DataResuse=utile.geturl("http://www.dbmeinv.com/dbgroup/show.htm?pager_offset=1");
 //                Log.e("____________",DataResuse.size()+"");
 //                for (int i = 0; i < DataResuse.size(); i++) {
 //                    Log.e("*********url",DataResuse.get(i).getImgUrl());
