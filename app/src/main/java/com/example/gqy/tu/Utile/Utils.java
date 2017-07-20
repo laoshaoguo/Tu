@@ -57,7 +57,8 @@ public class Utils {
     public static <T> List<T> stringToList(String json , Class<T> cls  ){
         Gson gson = new Gson();
         List<T> list = new ArrayList<>();
-        JsonArray array = (JsonArray) new JsonParser().parse(json).getAsJsonObject().get("results");
+//        tngou results
+        JsonArray array = (JsonArray) new JsonParser().parse(json).getAsJsonObject().get("tngou");
         for(final JsonElement elem : array){
             list.add(gson.fromJson(elem, cls));
         }

@@ -10,14 +10,14 @@
         android:roundIcon="@mipmap/icon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity.WeclomActivity">
+        <activity android:name=".HomeActivity.PullToRefreshUseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity.PullToRefreshUseActivity"/>
+       <!-- <activity android:name=".HomeActivity.PullToRefreshUseActivity"/>-->
         <activity android:name=".HomeActivity.PhotoBrowse"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

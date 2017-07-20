@@ -24,6 +24,7 @@ import com.example.gqy.tu.Bean.Data;
 import com.example.gqy.tu.R;
 import com.example.gqy.tu.Utile.Utils;
 import com.example.gqy.tu.View.CustomLoadMoreView;
+import com.jkyeo.splashview.SplashView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -53,7 +54,10 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     private boolean mLoadMoreEndGone = false;
 
     private Context context;
-    private String mBaseUrl = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/";
+//    private String mBaseUrl = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/";
+//    http://www.tngou.net/tnfs/api/list?page=1&rows=10
+    private String mBaseUrl = "http://www.tngou.net/tnfs/api/list?page=";
+//        +"1"+"&rows=10";
 
     List<Data> data, datalod;
 
@@ -66,7 +70,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
 
         setContentView(R.layout.activity_pulltorefresh);
         context = PullToRefreshUseActivity.this;
-
+        getlodedata(page);
         initview();
 
     }
@@ -100,7 +104,27 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         //        setBackBtn();
 //        initAdapter();
 //        addHeadView();
+        // call after setContentView(R.layout.activity_sample);
+        SplashView.showSplashView(this, 6, R.mipmap.welcom, new SplashView.OnSplashViewActionListener() {
+            @Override
+            public void onSplashImageClick(String actionUrl) {
+                Log.d("SplashView", "img clicked. actionUrl: " + actionUrl);
+//                Toast.makeText(context, "img clicked.", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onSplashViewDismiss(boolean initiativeDismiss) {
+                Log.d("SplashView", "dismissed, initiativeDismiss: " + initiativeDismiss);
+            }
+        });
+//        String url = "http://img1.126.net/channel6/2015/ad/2_1224a.jpg";
+//        String url = "http://ww2.sinaimg.cn/large/72f96cbagw1f5mxjtl6htj20g00sg0vn.jpg";
+
+//        String url = "http://tnfs.tngou.net/image/ext/161127/38b16f1831bb3ea6a44759371d070985.jpg";
+        String url = "http://tnfs.tngou.net/image/ext/161111/0dafade966935c6fec5ddfef666a7003.jpg";
+//        String url = "http://ws1.sinaimg.cn/large/610dc034ly1fhhz28n9vyj20u00u00w9.jpg";
+        // call this method anywhere to update splash view data
+        SplashView.updateSplashData(this, url, "http://jkyeo.com");
 
     }
 
@@ -189,7 +213,11 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
 
     //获取数据
     public void getdata() {
-        String url = mBaseUrl +1 + "";
+
+        String url = mBaseUrl + page + "" +"&rows=10";
+//        String url = mBaseUrl + page + "" ;
+
+        System.out.println("urlurl:"+url);
         OkHttpUtils
                 .get()
                 .url(url)
@@ -219,7 +247,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
 
         @Override
         public void onResponse(String response, int id) {
-//            Log.e(TAG, "onResponse：complete" + response);
+            Log.e(TAG, "onResponse：complete" + response);
             data = Utils.stringToList(response, Data.class);
             System.out.println("data:" + data.size());
             initAdapter();
@@ -228,7 +256,9 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     }
 
     public void getlodedata(int page) {
-        String url = mBaseUrl + page + "";
+        String url = mBaseUrl + page + "" +"&rows=10";;
+//        String url = mBaseUrl + page ;
+
         OkHttpUtils
                 .get()
                 .url(url)
@@ -258,7 +288,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
 
         @Override
         public void onResponse(String response, int id) {
-//            Log.e(TAG, "onResponse：complete" + response);
+            Log.e(TAG, "onResponse：complete" + response);
 
 
             datalod = Utils.stringToList(response, Data.class);

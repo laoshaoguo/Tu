@@ -15,4 +15,5 @@ package com.example.gqy.tu.Bean;
 public class Data {
     public String type;
     public String url;
+    public String img;
 }
