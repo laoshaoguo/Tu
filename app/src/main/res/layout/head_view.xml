@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@mipmap/gaunggao2"
-              android:gravity="center"
-              android:layout_marginBottom="1dp"
-              android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+
+    android:gravity="center"
+    android:orientation="vertical"
 
     >
-
- <!--   <ImageView
-        android:id="@+id/iv"
+    <!--android:background="@mipmap/gaunggao2"-->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="220dp">
 
-        android:src="@mipmap/add_icon"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/banner_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Header"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>-->
+
+        <com.shizhefei.view.indicator.FixedIndicatorView
+            android:id="@+id/banner_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="right|bottom" />
+    </FrameLayout>
+    <!--   <ImageView
+           android:id="@+id/iv"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+
+           android:src="@mipmap/add_icon"/>
+
+       <TextView
+           android:id="@+id/tv"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:text="Header"
+           android:layout_marginTop="10dp"
+           android:textColor="@android:color/white"
+           android:textSize="20sp"/>-->
 </LinearLayout>

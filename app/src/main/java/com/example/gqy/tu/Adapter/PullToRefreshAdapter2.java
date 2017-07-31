@@ -41,7 +41,8 @@ public class PullToRefreshAdapter2 extends BaseQuickAdapter<Data, BaseViewHolder
     protected void convert(BaseViewHolder viewholder, Data item) {
 
 //        Glide.with(mContext).load("http://tnfs.tngou.net/image"+item.img).into((ImageView) viewholder.getView(R.id.imagview));
-        Glide.with(mContext).load("http://tnfs.tngou.net/img"+item.img).into((ImageView) viewholder.getView(R.id.imagview));
+//        Glide.with(mContext).load("http://tnfs.tngou.net/img"+item.img).into((ImageView) viewholder.getView(R.id.imagview));
+        Glide.with(mContext).load(item.url).into((ImageView) viewholder.getView(R.id.imagview));
 
 //        Glide.with(mContext).load(str+str2).into((ImageView) viewholder.getView(R.id.imagview));
     }

@@ -12,7 +12,9 @@ package com.example.gqy.tu.Bean;
         "url": "https://ws1.sinaimg.cn/large/610dc034ly1fga6auw8ycj20u00u00uw.jpg",
         "used": true,
         "who": "daimajia"*/
+
 public class Data {
+    public static String Lodeurl = "http://tnfs.tngou.net/image/ext/161111/0dafade966935c6fec5ddfef666a7003.jpg";
     public String type;
     public String url;
     public String img;

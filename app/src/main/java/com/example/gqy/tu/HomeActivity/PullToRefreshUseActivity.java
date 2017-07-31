@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -25,6 +27,11 @@ import com.example.gqy.tu.R;
 import com.example.gqy.tu.Utile.Utils;
 import com.example.gqy.tu.View.CustomLoadMoreView;
 import com.jkyeo.splashview.SplashView;
+import com.shizhefei.view.indicator.BannerComponent;
+import com.shizhefei.view.indicator.Indicator;
+import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.shizhefei.view.indicator.slidebar.ColorBar;
+import com.shizhefei.view.indicator.slidebar.ScrollBar;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -54,15 +61,18 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     private boolean mLoadMoreEndGone = false;
 
     private Context context;
-//    private String mBaseUrl = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/";
+    private String mBaseUrl = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/";
 //    http://www.tngou.net/tnfs/api/list?page=1&rows=10
-    private String mBaseUrl = "http://www.tngou.net/tnfs/api/list?page=";
+//    private String mBaseUrl = "http://www.tngou.net/tnfs/api/list?page=";
 //        +"1"+"&rows=10";
+
+
+    private String zufangba="http://bj.58.com/hezu/29718626855724x.shtml?from=1-list-12&iuType=p_0&PGTID=0d3090a7-0000-18c3-c1f8-30a7d8832204&ClickID=7";
 
     List<Data> data, datalod;
 
     private int page = 1;
-
+    private BannerComponent bannerComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +98,16 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         //这句就是添加我们自定义的分隔线
 //        mRecyclerView.addItemDecoration(new RecyclerSpace(6, R.color.colorAccent,0));
         if (Utils.isNetworkAvailable(context)) {
-            if(BaseApplication.initData!=null){
-                data =BaseApplication.initData;
+            if (BaseApplication.initData != null) {
+                data = BaseApplication.initData;
                 initAdapter();
                 addHeadView();
-            }else{
+            } else {
                 getdata();
             }
 
-        }else {
-            Toast.makeText(context,"网络被强盗拿走了请报官",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "网络被强盗拿走了请报官", Toast.LENGTH_SHORT).show();
         }
 
         setTitle("LOOK");
@@ -133,6 +143,19 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         View headView = getLayoutInflater().inflate(R.layout.head_view, (ViewGroup) mRecyclerView.getParent(), false);
 //        headView.findViewById(R.id.iv).setVisibility(View.GONE);
         /*((TextView) headView.findViewById(R.id.tv)).setText("change load view");*/
+
+
+        ViewPager viewPager = (ViewPager) headView.findViewById(R.id.banner_viewPager);
+        Indicator indicator = (Indicator) headView.findViewById(R.id.banner_indicator);
+        indicator.setScrollBar(new ColorBar(getApplicationContext(), Color.GRAY, 0, ScrollBar.Gravity.CENTENT_BACKGROUND));
+        viewPager.setOffscreenPageLimit(2);
+
+        bannerComponent = new BannerComponent(indicator, viewPager, false);
+        bannerComponent.setAdapter(adapter);
+
+
+
+
         headView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +166,10 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
             }
         });
         pullToRefreshAdapter.addHeaderView(headView);
+        //默认就是800毫秒，设置单页滑动效果的时间
+//        bannerComponent.setScrollDuration(800);
+        //设置播放间隔时间，默认情况是3000毫秒
+        bannerComponent.setAutoPlayTime(2500);
     }
 
     @Override
@@ -214,10 +241,10 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     //获取数据
     public void getdata() {
 
-        String url = mBaseUrl + page + "" +"&rows=10";
-//        String url = mBaseUrl + page + "" ;
+//        String url = mBaseUrl + page + "" +"&rows=10";
+        String url = mBaseUrl + page + "";
 
-        System.out.println("urlurl:"+url);
+        System.out.println("urlurl:" + url);
         OkHttpUtils
                 .get()
                 .url(url)
@@ -256,8 +283,8 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     }
 
     public void getlodedata(int page) {
-        String url = mBaseUrl + page + "" +"&rows=10";;
-//        String url = mBaseUrl + page ;
+//        String url = mBaseUrl + page + "" +"&rows=10";;
+        String url = mBaseUrl + page;
 
         OkHttpUtils
                 .get()
@@ -302,7 +329,7 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) { //监控/拦截/屏蔽返回键
             Toast.makeText(context, "欢迎下次光临", Toast.LENGTH_SHORT).show();
-            if( BaseApplication.initData!=null){
+            if (BaseApplication.initData != null) {
                 BaseApplication.initData.clear();
             }
 
@@ -313,4 +340,84 @@ public class PullToRefreshUseActivity extends BasaActivity implements BaseQuickA
         return true;
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bannerComponent.startAutoPlay();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bannerComponent.stopAutoPlay();
+    }
+
+    private int[] images = { R.mipmap.p2, R.mipmap.p3, R.mipmap.p4,R.mipmap.banner1};
+    private IndicatorViewPager.IndicatorViewPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
+
+        @Override
+        public View getViewForTab(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = new View(container.getContext());
+            }
+            return convertView;
+        }
+
+        @Override
+        public View getViewForPage(final int position, View convertView, final ViewGroup container) {
+            if (convertView == null) {
+                convertView = new ImageView(getApplicationContext());
+                convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+            ImageView imageView = (ImageView) convertView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageResource(images[position]);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent();
+                    if (position==0){
+                        intent.putExtra("url",zufangba);
+                        intent.putExtra("title","租房吧");
+                        intent.setClass(context,   WebActivity.class);
+                        Toast.makeText(context,"你点击了"+position,Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        //设置切换动画，从右边进入，左边退出,带动态效果
+                        overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+//                        Toast.makeText(context,"你点击了"+position,Toast.LENGTH_SHORT).show();
+                    }else if (position==1){
+                         intent.putExtra("url",zufangba);
+                        intent.putExtra("title","租房吧");
+                        intent.setClass(context,   WebActivity.class);
+                        Toast.makeText(context,"你点击了"+position,Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        //设置切换动画，从右边进入，左边退出,带动态效果
+//                        overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+                    }else {
+                        intent.putExtra("url",zufangba);
+                        intent.putExtra("title","租房吧");
+                        intent.setClass(context,   WebActivity.class);
+//                        Toast.makeText(context,"你点击了"+position,Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        //设置切换动画，从右边进入，左边退出,带动态效果
+                        overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+                    }
+                }
+            });
+            return convertView;
+        }
+
+
+
+//        @Override
+//        public int getItemPosition(Object object) {
+//            return RecyclingPagerAdapter.POSITION_NONE;
+//        }
+
+        @Override
+        public int getCount() {
+            return images.length;
+        }
+    };
 }

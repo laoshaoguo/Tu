@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/menu_click"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_titele"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/activity_textview_size18" />
+
+    <ImageView
+        android:id="@+id/image_back"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_title_back_margin"
+        android:src="@mipmap/img_actionbar_back" />
+
+
+    <!--  <ImageView
+          android:id="@+id/image_set"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="@dimen/activity_title_back_margin"
+          android:scaleType="centerInside"
+          android:src="@drawable/sidebar_set"
+          android:visibility="gone" />-->
+    <TextView
+        android:id="@+id/tv_set"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_margin15"
+        android:gravity="center_vertical"
+        android:text="@string/set"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/activity_textview_size15"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/image_more"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_margin15"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+</RelativeLayout>

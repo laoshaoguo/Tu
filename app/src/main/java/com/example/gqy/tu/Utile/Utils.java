@@ -58,7 +58,7 @@ public class Utils {
         Gson gson = new Gson();
         List<T> list = new ArrayList<>();
 //        tngou results
-        JsonArray array = (JsonArray) new JsonParser().parse(json).getAsJsonObject().get("tngou");
+        JsonArray array = (JsonArray) new JsonParser().parse(json).getAsJsonObject().get("results");
         for(final JsonElement elem : array){
             list.add(gson.fromJson(elem, cls));
         }
